@@ -1,39 +1,41 @@
-import axios from 'axios';
+import Link from 'next/link';
 
-const LandingPage = ({ currentUser }) => {
-  // console.log(currentUser);
-  console.log(currentUser);
+const LandingPage = ({ currentUser, tickets }) => {
+  const ticketList = tickets.map((ticket) => {
+    return (
+      <tr key={ticket.id}>
+        <td>{ticket.title}</td>
+        <td>{ticket.price}</td>
+        <td>
+          <Link href="/tickets/[ticketId]" as={`/tickets/${ticket.id}`}>
+            <a>View</a>
+          </Link>
+        </td>
+      </tr>
+    );
+  });
 
-  return <h1> Landing page</h1>;
+  return (
+    <div>
+      <h1>Tickets</h1>
+      <table className="table">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Price</th>
+            <th>Link</th>
+          </tr>
+        </thead>
+        <tbody>{ticketList}</tbody>
+      </table>
+    </div>
+  );
 };
 
-LandingPage.getInitialProps = async () => {
-  // const response = await axios.get(
-  //   'http://ingress-nginx.ingress-nginx.svc.cluster.local/api/users/currentuser'
-  // );
-  if (typeof window === 'undefined') {
-    //we are on the server
-    //request should be made to http://ingress-nginx.
-    //servicename.namespace.svc.cluster.local
-    const { data } = await axios.get(
-      'http://ingress-nginx-controller.ingress-nginx.svc.cluster.local/api/users/currentuser',
-      // 'https://auth-srv/api/users/currentuser',
-      {
-        headers: {
-          host: 'ticketing.dev',
-        },
-      }
-    );
-    return data;
-  } else {
-    //we are on the browser
-    //req can be made to ''
-    const { data } = await axios.get('/api/users/currentuser');
+LandingPage.getInitialProps = async (context, client, currentUser) => {
+  const { data } = await client.get('/api/tickets');
 
-    return data;
-  }
-
-  return {};
+  return { tickets: data };
 };
 
 export default LandingPage;
