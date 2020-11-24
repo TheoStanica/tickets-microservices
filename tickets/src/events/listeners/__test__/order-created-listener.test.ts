@@ -14,6 +14,8 @@ const setup = async () => {
     title: 'concert',
     price: 99,
     userId: 'asdf',
+    latitude: 12,
+    longitude: 13,
   });
   await ticket.save();
 

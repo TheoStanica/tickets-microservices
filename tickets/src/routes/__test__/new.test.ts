@@ -30,6 +30,8 @@ it('returns an error if an invalid title is provided', async () => {
     .send({
       title: '',
       price: 10,
+      latitude: 12,
+      longitude: 13,
     })
     .expect(400);
   await request(app)
@@ -48,6 +50,8 @@ it('returns an error if an invalid price is provided', async () => {
     .send({
       title: 'titletest',
       price: -10,
+      latitude: 12,
+      longitude: 13,
     })
     .expect(400);
 
@@ -71,6 +75,8 @@ it('creates a ticket with valid input', async () => {
     .send({
       title,
       price: 20,
+      latitude: 12,
+      longitude: 13,
     })
     .expect(201);
 
@@ -88,6 +94,8 @@ it('publishes an event', async () => {
     .send({
       title,
       price: 20,
+      latitude: 12,
+      longitude: 13,
     })
     .expect(201);
 

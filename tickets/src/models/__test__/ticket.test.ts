@@ -6,6 +6,8 @@ it('implements optimistic concurrency control', async (done) => {
     title: 'concert',
     price: 10,
     userId: '1234432',
+    latitude: 12,
+    longitude: 13,
   });
 
   // save ticket to db
@@ -36,6 +38,8 @@ it('increments the version number on multiple saves', async () => {
     title: 'gsdsgd',
     price: 12,
     userId: 'agasdg',
+    latitude: 12,
+    longitude: 13,
   });
   await ticket.save();
   expect(ticket.version).toEqual(0);

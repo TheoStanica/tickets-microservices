@@ -21,6 +21,8 @@ router.put(
     body('price')
       .isFloat({ gt: 0 })
       .withMessage('Price must be greater than 0'),
+    body('latitude').isFloat(),
+    body('longitude').isFloat(),
   ],
   validateRequest,
   async (req: Request, res: Response) => {
@@ -41,6 +43,8 @@ router.put(
     ticket.set({
       title: req.body.title,
       price: req.body.price,
+      latitude: req.body.latitude,
+      longitude: req.body.longitude,
     });
     await ticket.save();
 

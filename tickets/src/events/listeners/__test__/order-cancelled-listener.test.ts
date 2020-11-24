@@ -13,6 +13,8 @@ const setup = async () => {
     title: 'sdgsdg',
     price: 20,
     userId: 'sdgsdgaaa',
+    latitude: 12,
+    longitude: 13,
   });
   ticket.set({ orderId });
   await ticket.save();

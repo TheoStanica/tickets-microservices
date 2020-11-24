@@ -10,12 +10,13 @@ import { signupRouter } from './routes/signup';
 import { errorHandler, NotFoundError } from '@tcosmintickets/common';
 
 const app = express();
-app.set('trust proxy', true);
+app.set('trust proxy', 1);
 app.use(json());
 app.use(
   cookieSession({
     signed: false,
-    secure: process.env.NODE_ENV !== 'test',
+    // secure: process.env.NODE_ENV !== 'test',
+    secure: false,
   })
 );
 
