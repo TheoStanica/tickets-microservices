@@ -17,6 +17,8 @@ it('returns returns the ticket if the ticket is found', async () => {
     .send({
       title,
       price,
+      latitude: 12,
+      longitude: 13,
     })
     .expect(201);
 

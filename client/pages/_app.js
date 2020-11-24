@@ -26,7 +26,14 @@ AppComponent.getInitialProps = async (appContext) => {
     );
   }
 
+  console.log(
+    '-------------------------------------------------------------------------------------props'
+  );
   console.log(pageProps);
+  console.log('data ,', data);
+  console.log(
+    '-------------------------------------------------------------------------------------props'
+  );
 
   return {
     pageProps,

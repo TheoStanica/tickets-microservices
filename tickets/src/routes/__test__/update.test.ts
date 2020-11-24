@@ -12,6 +12,8 @@ it('returns a 404 if the provided id does not exist ', async () => {
     .send({
       title: 'sdgsdg',
       price: 20,
+      latitude: 12,
+      longitude: 13,
     })
     .expect(404);
 });
@@ -23,6 +25,8 @@ it('returns a 401 if the user is not authenticated ', async () => {
     .send({
       title: 'sdgsdg',
       price: 20,
+      latitude: 12,
+      longitude: 13,
     })
     .expect(401);
 });
@@ -34,6 +38,8 @@ it('returns a 401 if the user does not own the ticket ', async () => {
     .send({
       title: 'sdgsdgs',
       price: 20,
+      latitude: 12,
+      longitude: 13,
     });
 
   await request(app)
@@ -42,6 +48,8 @@ it('returns a 401 if the user does not own the ticket ', async () => {
     .send({
       title: 'dgsdhsdhsdhdf',
       price: 45,
+      latitude: 12,
+      longitude: 13,
     })
     .expect(401);
 });
@@ -54,6 +62,8 @@ it('returns a 400 if the user provides an invalid title or price ', async () => 
     .send({
       title: 'sdgsdgs',
       price: 20,
+      latitude: 12,
+      longitude: 13,
     });
 
   await request(app)
@@ -62,6 +72,8 @@ it('returns a 400 if the user provides an invalid title or price ', async () => 
     .send({
       title: '',
       price: 20,
+      latitude: 12,
+      longitude: 13,
     })
     .expect(400);
 
@@ -71,6 +83,8 @@ it('returns a 400 if the user provides an invalid title or price ', async () => 
     .send({
       title: 'sdgdsgsd',
       price: -19,
+      latitude: 12,
+      longitude: 13,
     })
     .expect(400);
 });
@@ -83,6 +97,8 @@ it('updates the tocket provided with valid inputs ', async () => {
     .send({
       title: 'sdgsdgs',
       price: 20,
+      latitude: 12,
+      longitude: 13,
     });
 
   await request(app)
@@ -91,6 +107,8 @@ it('updates the tocket provided with valid inputs ', async () => {
     .send({
       title: 'new title',
       price: 19,
+      latitude: 12,
+      longitude: 13,
     })
     .expect(200);
 
@@ -110,6 +128,8 @@ it('publishes and event', async () => {
     .send({
       title: 'sdgsdgs',
       price: 20,
+      latitude: 12,
+      longitude: 13,
     });
 
   await request(app)
@@ -118,6 +138,8 @@ it('publishes and event', async () => {
     .send({
       title: 'new title',
       price: 19,
+      latitude: 12,
+      longitude: 13,
     })
     .expect(200);
 
@@ -132,6 +154,8 @@ it('rejects updates if the ticket is reserved', async () => {
     .send({
       title: 'sdgsdgs',
       price: 20,
+      latitude: 12,
+      longitude: 13,
     });
 
   const ticket = await Ticket.findById(response.body.id);
@@ -144,6 +168,8 @@ it('rejects updates if the ticket is reserved', async () => {
     .send({
       title: 'new title',
       price: 19,
+      latitude: 12,
+      longitude: 13,
     })
     .expect(400);
 });

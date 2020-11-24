@@ -5,6 +5,8 @@ interface TicketAttrs {
   title: string;
   price: number;
   userId: string;
+  latitude: number;
+  longitude: number;
 }
 
 interface TicketDoc extends mongoose.Document {
@@ -13,6 +15,8 @@ interface TicketDoc extends mongoose.Document {
   userId: string;
   version: number;
   orderId: string;
+  latitude: number;
+  longitude: number;
 }
 
 interface TicketModel extends mongoose.Model<TicketDoc> {
@@ -35,6 +39,12 @@ const ticketSchema = new mongoose.Schema(
     },
     orderId: {
       type: String,
+    },
+    latitude: {
+      type: Number,
+    },
+    longitude: {
+      type: Number,
     },
   },
   {

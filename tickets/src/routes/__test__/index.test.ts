@@ -5,6 +5,8 @@ const createTicket = () => {
   return request(app).post('/api/tickets').set('Cookie', global.signin()).send({
     title: 'sdgsdh',
     price: 20,
+    latitude: 12,
+    longitude: 13,
   });
 };
 
